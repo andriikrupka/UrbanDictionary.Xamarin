@@ -9,7 +9,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
-    [Application(Label = "AndroidPlayground")]
+    [Application(Label = "Urban Dictionary")]
     public class App : Application
     {
         App(IntPtr handle, JniHandleOwnership owner) : base(handle, owner) { }
@@ -17,9 +17,6 @@ namespace UrbanDictionary.Xamarin.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            
-
-            //Locator.CurrentMutable.RegisterLazySingleton(() => new DayWordsProvider(httpClient), typeof(IDayWordsProvider));
         }
     }
 }
