@@ -4,20 +4,21 @@ using MvvmCross.Binding.Droid.Views;
 using System.Collections;
 using UrbanDictionary.Xamarin.Core.Collections;
 using System.Threading.Tasks;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
-    public class MvxIncrementalAdapter : MvxAdapter
+    public class MvxIncrementalAdapter : MvxRecyclerAdapter
     {
         private int _lastCount;
         private int _maxPositionReached;
 
-        public MvxIncrementalAdapter(Context context)
-            : base(context)
+        public MvxIncrementalAdapter()
+            : base()
         {
         }
 
-        public override View GetView(int position, View convertView, ViewGroup parent)
+        public override object GetItem(int position)
         {
             if ((position >= _maxPositionReached) && (position >= _lastCount))
             {
@@ -25,7 +26,7 @@ namespace UrbanDictionary.Xamarin.Droid
                 LoadMoreItemsAsync();
             }
 
-            return base.GetView(position, convertView, parent);
+            return base.GetItem(position);
         }
 
         protected override void SetItemsSource(IEnumerable value)
@@ -42,7 +43,7 @@ namespace UrbanDictionary.Xamarin.Droid
 
             if (source != null)
             {
-                _lastCount = Count;
+                _lastCount = ItemCount;
                 await source.LoadMoreItemsAsync();
             }
         }

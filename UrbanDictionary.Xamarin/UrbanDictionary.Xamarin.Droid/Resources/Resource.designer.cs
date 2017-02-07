@@ -87,6 +87,24 @@ namespace UrbanDictionary.Xamarin.Droid
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_reverseLayout = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_reverseLayout;
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_spanCount = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_spanCount;
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_stackFromEnd = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Paginate.Droid.Resource.Attribute.layoutManager = global::UrbanDictionary.Xamarin.Droid.Resource.Attribute.layoutManager;
+			global::Paginate.Droid.Resource.Attribute.reverseLayout = global::UrbanDictionary.Xamarin.Droid.Resource.Attribute.reverseLayout;
+			global::Paginate.Droid.Resource.Attribute.spanCount = global::UrbanDictionary.Xamarin.Droid.Resource.Attribute.spanCount;
+			global::Paginate.Droid.Resource.Attribute.stackFromEnd = global::UrbanDictionary.Xamarin.Droid.Resource.Attribute.stackFromEnd;
+			global::Paginate.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::UrbanDictionary.Xamarin.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Paginate.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::UrbanDictionary.Xamarin.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Paginate.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::UrbanDictionary.Xamarin.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Paginate.Droid.Resource.Id.item_touch_helper_previous_elevation = global::UrbanDictionary.Xamarin.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Paginate.Droid.Resource.Layout.loading_row = global::UrbanDictionary.Xamarin.Droid.Resource.Layout.loading_row;
+			global::Paginate.Droid.Resource.String.ApplicationName = global::UrbanDictionary.Xamarin.Droid.Resource.String.ApplicationName;
+			global::Paginate.Droid.Resource.String.Hello = global::UrbanDictionary.Xamarin.Droid.Resource.String.Hello;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_android_orientation = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_layoutManager = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_spanCount = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Paginate.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
 		}
 		
 		public partial class Attribute
@@ -221,10 +239,13 @@ namespace UrbanDictionary.Xamarin.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int loading_row = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int WordDayItem = 2130903041;
+			public const int Main = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int WordDayItem = 2130903042;
 			
 			static Layout()
 			{
@@ -239,14 +260,20 @@ namespace UrbanDictionary.Xamarin.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060002
-			public const int app_name = 2131099650;
-			
 			// aapt resource value: 0x7f060001
-			public const int hello = 2131099649;
+			public const int ApplicationName = 2131099649;
 			
 			// aapt resource value: 0x7f060000
-			public const int library_name = 2131099648;
+			public const int Hello = 2131099648;
+			
+			// aapt resource value: 0x7f060004
+			public const int app_name = 2131099652;
+			
+			// aapt resource value: 0x7f060003
+			public const int hello = 2131099651;
+			
+			// aapt resource value: 0x7f060002
+			public const int library_name = 2131099650;
 			
 			static String()
 			{
