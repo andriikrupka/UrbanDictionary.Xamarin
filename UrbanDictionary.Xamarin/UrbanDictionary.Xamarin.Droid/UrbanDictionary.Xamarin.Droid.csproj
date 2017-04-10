@@ -159,10 +159,15 @@
     <Compile Include="Controls\HtmlTextBlock.cs" />
     <Compile Include="Controls\IncrementalAdapter.cs" />
     <Compile Include="Controls\MvxIncrementalListView.cs" />
+    <AndroidResource Include="Resources\layout\words_collection.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <Compile Include="Views\DayWordFragment.cs" />
     <Compile Include="Views\MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\WordsCollectionFragment.cs" />
     <Compile Include="WordListTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,15 +175,21 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\WordDayItem.axml">
+    <AndroidResource Include="Resources\layout\WordDayItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\style.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\home_view.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\day_word_tab.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml">
+    <AndroidResource Include="Resources\layout\Main.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\Strings.xml" />

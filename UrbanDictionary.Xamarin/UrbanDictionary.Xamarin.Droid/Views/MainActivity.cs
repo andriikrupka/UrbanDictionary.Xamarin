@@ -1,17 +1,30 @@
 ﻿using Android.App;
 using Android.OS;
-using UrbanDictionary.Xamarin.ViewModels;
 using MvvmCross.Droid.Views;
+using MvvmCross.Droid.Support.V4;
+using System;
+using UrbanDictionary.Xamarin.Droid.Views;
+using UrbanDictionary.Xamarin.ViewModels;
+using Android.Widget;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
-    [Activity(MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxActivity<MainViewModel>
+    [Activity(MainLauncher = true)]
+    public class MainActivity : MvxTabsFragmentActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        public MainViewModel MainViewModel => (MainViewModel)ViewModel;
+        public MainActivity()
+             : base(Resource.Layout.Main, Resource.Id.actualtabcontent)
         {
-            base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);
+
+           
+        }
+
+        
+        protected override void AddTabs(Bundle args)
+        {
+            AddTab<DayWordFragment>("One", "One", args, MainViewModel.DayWordsViewModel);
+            AddTab<WordsCollectionFragment>("Two", "Two", args, MainViewModel.WordsCollectionViewModel);
         }
     }
 }
