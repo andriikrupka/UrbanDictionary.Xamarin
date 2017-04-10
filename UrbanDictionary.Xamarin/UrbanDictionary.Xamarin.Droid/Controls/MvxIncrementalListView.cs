@@ -5,10 +5,14 @@ using MvvmCross.Binding.Droid.Views;
 using Android.Util;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using UrbanDictionary.Xamarin.Core.Collections;
+using System.Collections;
+using Android.Support.V7.Widget;
+using Java.Lang;
+using UrbanDictionary.Xamarin.Droid.Controls;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
-    public class MvxIncrementalListView : MvxRecyclerView, Paginate.Droid.Paginate.Callbacks
+    public class MvxIncrementalListView : MvxRecyclerView
     {
         private bool _isLoading;
 
@@ -16,25 +20,23 @@ namespace UrbanDictionary.Xamarin.Droid
         {
         }
 
-        public MvxIncrementalListView(Context context, IAttributeSet attrs) : this(context, attrs, 0, new MvxRecyclerAdapter()) { }
-        public MvxIncrementalListView(Context context, IAttributeSet attrs, int defStyle) : this(context, attrs, defStyle, new MvxRecyclerAdapter()) { }
-        public MvxIncrementalListView(Context context, IAttributeSet attrs, int defStyle, IMvxRecyclerAdapter adapter) : base(context, attrs, defStyle, adapter)
+        public MvxIncrementalListView(Context context, IAttributeSet attrs) : this(context, attrs, 0, new IncrementalAdapter()) { }
+        public MvxIncrementalListView(Context context, IAttributeSet attrs, int defStyle, IncrementalAdapter adapter) : base(context, attrs, defStyle, adapter)
         {
-
-            Paginate.Droid.Paginate.With(this, this)
-                .SetLoadingTriggerThreshold(5)
-                .AddLoadingListItem(true)
-                .Build();
+          
         }
+
 
         public async void onLoadMore()
         {
-            var source = Adapter.ItemsSource as ICoreSupportIncrementalLoading;
-            if (source != null)
+            if (Adapter?.ItemsSource != null)
             {
-                _isLoading = true;
-                await source.LoadMoreItemsAsync();
-                _isLoading = false;
+                if (Adapter?.ItemsSource is ICoreSupportIncrementalLoading source)
+                {
+                    _isLoading = true;
+                    await source.LoadMoreItemsAsync();
+                    _isLoading = false;
+                }
             }
         }
 
