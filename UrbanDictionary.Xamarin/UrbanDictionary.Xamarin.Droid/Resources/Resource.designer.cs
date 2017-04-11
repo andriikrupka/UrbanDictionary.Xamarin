@@ -3898,26 +3898,26 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020069
-			public const int avd_hide_password_1 = 2130837609;
-			
 			// aapt resource value: 0x7f02006a
-			public const int avd_hide_password_2 = 2130837610;
+			public const int avd_hide_password_1 = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int avd_hide_password_3 = 2130837611;
+			public const int avd_hide_password_2 = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int avd_hide_password_3 = 2130837612;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02006c
-			public const int avd_show_password_1 = 2130837612;
-			
 			// aapt resource value: 0x7f02006d
-			public const int avd_show_password_2 = 2130837613;
+			public const int avd_show_password_1 = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int avd_show_password_3 = 2130837614;
+			public const int avd_show_password_2 = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int avd_show_password_3 = 2130837615;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -3967,17 +3967,20 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f020064
 			public const int notification_icon_background = 2130837604;
 			
-			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_bg = 2130837607;
-			
 			// aapt resource value: 0x7f020068
-			public const int notification_template_icon_low_bg = 2130837608;
+			public const int notification_template_icon_bg = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int notification_template_icon_low_bg = 2130837609;
 			
 			// aapt resource value: 0x7f020065
 			public const int notification_tile_bg = 2130837605;
 			
 			// aapt resource value: 0x7f020066
 			public const int notify_panel_notification_icon_bg = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int search = 2130837607;
 			
 			static Drawable()
 			{
@@ -4048,6 +4051,9 @@ namespace UrbanDictionary.Xamarin.Droid
 			
 			// aapt resource value: 0x7f070045
 			public const int action_mode_close_button = 2131165253;
+			
+			// aapt resource value: 0x7f07009d
+			public const int action_search = 2131165341;
 			
 			// aapt resource value: 0x7f070086
 			public const int action_text = 2131165318;
@@ -4694,22 +4700,25 @@ namespace UrbanDictionary.Xamarin.Droid
 			public const int notification_template_part_time = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int select_dialog_item_material = 2130903099;
+			public const int search_layout = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_multichoice_material = 2130903100;
+			public const int select_dialog_item_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_singlechoice_material = 2130903101;
+			public const int select_dialog_multichoice_material = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int support_simple_spinner_dropdown_item = 2130903102;
+			public const int select_dialog_singlechoice_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int WordDayItem = 2130903103;
+			public const int support_simple_spinner_dropdown_item = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int words_collection = 2130903104;
+			public const int WordDayItem = 2130903104;
+			
+			// aapt resource value: 0x7f030041
+			public const int words_collection = 2130903105;
 			
 			static Layout()
 			{
@@ -4717,6 +4726,22 @@ namespace UrbanDictionary.Xamarin.Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0d0000
+			public const int search_menu = 2131558400;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

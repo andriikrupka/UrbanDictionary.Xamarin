@@ -162,6 +162,7 @@
     <AndroidResource Include="Resources\layout\words_collection.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <Compile Include="Views\SearchActivity.cs" />
     <Compile Include="Views\DayWordFragment.cs" />
     <Compile Include="Views\MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -185,6 +186,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\day_word_tab.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\search_menu" />
+    <AndroidResource Include="Resources\layout\search_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -211,6 +216,21 @@
   <ItemGroup>
     <Folder Include="Adapters\" />
     <Folder Include="Controls\NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -6,6 +6,7 @@ using System;
 using UrbanDictionary.Xamarin.Droid.Views;
 using UrbanDictionary.Xamarin.ViewModels;
 using Android.Widget;
+using Android.Views;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
@@ -17,10 +18,15 @@ namespace UrbanDictionary.Xamarin.Droid
              : base(Resource.Layout.Main, Resource.Id.actualtabcontent)
         {
 
-           
+            
         }
 
-        
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.search_menu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
         protected override void AddTabs(Bundle args)
         {
             AddTab<DayWordFragment>("One", "One", args, MainViewModel.DayWordsViewModel);
