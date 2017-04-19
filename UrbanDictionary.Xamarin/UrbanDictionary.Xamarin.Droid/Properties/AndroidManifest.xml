@@ -3,4 +3,5 @@
 	<uses-sdk android:minSdkVersion="21" />
 	<application android:label="UrbanDictionary.Xamarin.Droid"
                android:theme="@style/AppTheme"></application>
+
 </manifest>

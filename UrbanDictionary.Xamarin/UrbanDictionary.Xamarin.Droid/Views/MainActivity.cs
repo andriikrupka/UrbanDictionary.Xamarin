@@ -7,18 +7,28 @@ using UrbanDictionary.Xamarin.Droid.Views;
 using UrbanDictionary.Xamarin.ViewModels;
 using Android.Widget;
 using Android.Views;
+using Android.Support.V7.App;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
     [Activity(MainLauncher = true)]
-    public class MainActivity : MvxTabsFragmentActivity
+    public class MainActivity : MvxTabsAppCompatActivity
     {
         public MainViewModel MainViewModel => (MainViewModel)ViewModel;
         public MainActivity()
              : base(Resource.Layout.Main, Resource.Id.actualtabcontent)
         {
-
+        
             
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolBar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetHomeButtonEnabled(true);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

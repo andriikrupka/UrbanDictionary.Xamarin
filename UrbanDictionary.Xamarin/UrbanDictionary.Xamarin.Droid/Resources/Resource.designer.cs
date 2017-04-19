@@ -48,6 +48,7 @@ namespace UrbanDictionary.Xamarin.Droid
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.MvxListView;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::UrbanDictionary.Xamarin.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Droid.Support.Core.UI.Resource.String.library_name = global::UrbanDictionary.Xamarin.Droid.Resource.String.library_name;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_fade_in = global::UrbanDictionary.Xamarin.Droid.Resource.Animation.abc_fade_in;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_fade_out = global::UrbanDictionary.Xamarin.Droid.Resource.Animation.abc_fade_out;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_grow_fade_in_from_bottom = global::UrbanDictionary.Xamarin.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
