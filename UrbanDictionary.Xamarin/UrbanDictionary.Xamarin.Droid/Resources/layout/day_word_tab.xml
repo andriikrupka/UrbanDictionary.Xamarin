@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  <UrbanDictionary.Xamarin.Droid.MvxIncrementalListView
-         android:id="@+id/wordsListView"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         local:MvxBind="ItemsSource Data"
-         local:MvxItemTemplate="@layout/worddayitem" />
-</LinearLayout>
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+  <MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout
+      android:id="@+id/wordsListViewRefreshLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      local:MvxBind="Refreshing IsRefreshing; RefreshCommand RefreshCommand">
+      <UrbanDictionary.Xamarin.Droid.MvxIncrementalListView
+             android:id="@+id/wordsListView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             local:MvxBind="ItemsSource Data"
+             local:MvxItemTemplate="@layout/worddayitem" />
+
+  </MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout>
+</FrameLayout>
