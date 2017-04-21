@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <!--<Button
+      android:id="@+id/dismiss_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="dismiss"
+      android:layout_margin="24dp"/>-->
+
+  <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+      android:id="@+id/characters_recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    
+  </MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView>
+</LinearLayout>
