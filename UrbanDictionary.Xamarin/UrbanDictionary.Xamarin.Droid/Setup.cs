@@ -1,8 +1,10 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Droid.Shared.Presenter;
-using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
+using MvvmCross.Platform.IoC;
+using UrbanDictionary.Xamarin.Droid.Services;
+using UrbanDictionary.Xamarin.Services;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
@@ -14,14 +16,17 @@ namespace UrbanDictionary.Xamarin.Droid
 
         protected override IMvxApplication CreateApp()
         {
-           return new AppBase();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, AndroidDialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<INetworkService, AndroidNetworkService>();
+            return new AppBase();
         }
 
-        protected override IMvxAndroidViewPresenter CreateViewPresenter()
+        protected override IMvxIocOptions CreateIocOptions()
         {
-            
-
-            return base.CreateViewPresenter();
+            return new MvxIocOptions()
+            {
+                PropertyInjectorOptions = MvxPropertyInjectorOptions.MvxInject
+            };
         }
     }
 }

@@ -10,7 +10,7 @@ using UrbanDictionary.Xamarin.DataAccess;
 namespace UrbanDictionary.Xamarin.ViewModels
 {
     [PropertyChanged.ImplementPropertyChanged]
-    public class WordsCollectionViewModel : MvxViewModel
+    public class WordsCollectionViewModel : BaseViewModel
     {
         private IDayWordsProvider dayWordsProvider;
 
@@ -34,7 +34,14 @@ namespace UrbanDictionary.Xamarin.ViewModels
         public List<BrowseWord> Words { get; set; }
         private async void OnCurrentCharacterChanged()
         {
-            Words = await dayWordsProvider.LoadFromCharacterAsync(CurrentCharacter);
+            try
+            {
+                Words = await dayWordsProvider.LoadFromCharacterAsync(CurrentCharacter);
+            }
+            catch (Exception)
+            {
+                ShowError();
+            }
         }
     }
 }

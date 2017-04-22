@@ -10,20 +10,25 @@ using UrbanDictionary.Xamarin.DataAccess;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
-    public class DayWordsViewModel : MvxViewModel
+    public class DayWordsViewModel : BaseViewModel
     {
         private readonly IDayWordsProvider _dayWordsProvider;
         private int pageNumber = 0;
+        private IDialogService _dialogService;
 
-        public MvxCommand RefreshCommand { get; private set; }
 
-        public DayWordsViewModel(IDayWordsProvider dayWordsProvider)
+        public DayWordsViewModel(IDayWordsProvider dayWordsProvider, IDialogService dialogService)
         {
             _dayWordsProvider = dayWordsProvider;
+            _dialogService = dialogService;
             Data = new IncrementalCollection<WordOfDay>(LoadMoreItems);
 
             RefreshCommand = new MvxCommand(RefreshExecute);
         }
+
+        public IncrementalCollection<WordOfDay> Data { get; private set; }
+        public bool IsRefreshing { get; private set; }
+        public MvxCommand RefreshCommand { get; private set; }
 
         private async void RefreshExecute()
         {
@@ -35,26 +40,37 @@ namespace UrbanDictionary.Xamarin.ViewModels
                 Data.AddRange(data);
                 pageNumber = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                throw;
+                //ShowError();
             }
             finally
             {
                 IsRefreshing = false;
             }
-
-            RaisePropertyChanged(nameof(IsRefreshing));
         }
 
         private async Task<IList<WordOfDay>> LoadMoreItems()
         {
-            var data = await _dayWordsProvider.LoadPageWordsOfDayAsync(pageNumber++);
+            IList<WordOfDay> data = null;
+            try
+            {
+                data = await _dayWordsProvider.LoadPageWordsOfDayAsync(pageNumber++);
+
+            }
+            catch (Exception)
+            {
+                //ShowError();
+            }
+            finally
+            {
+                if (data == null)
+                {
+                    data = new List<WordOfDay>();
+                }
+            }
+
             return data;
         }
-
-        public IncrementalCollection<WordOfDay> Data { get; private set; }
-        public bool IsRefreshing { get; private set; }
     }
 }
