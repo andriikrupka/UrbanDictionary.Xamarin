@@ -4059,8 +4059,8 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f070045
 			public const int action_mode_close_button = 2131165253;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int action_search = 2131165347;
+			// aapt resource value: 0x7f0700a5
+			public const int action_search = 2131165349;
 			
 			// aapt resource value: 0x7f07008b
 			public const int action_text = 2131165323;
@@ -4110,8 +4110,8 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f070034
 			public const int center_vertical = 2131165236;
 			
-			// aapt resource value: 0x7f0700a0
-			public const int characterView = 2131165344;
+			// aapt resource value: 0x7f0700a2
+			public const int characterView = 2131165346;
 			
 			// aapt resource value: 0x7f070076
 			public const int character_button = 2131165302;
@@ -4251,8 +4251,8 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f07004a
 			public const int list_item = 2131165258;
 			
-			// aapt resource value: 0x7f0700a2
-			public const int masked = 2131165346;
+			// aapt resource value: 0x7f0700a4
+			public const int masked = 2131165348;
 			
 			// aapt resource value: 0x7f07008f
 			public const int media_actions = 2131165327;
@@ -4358,6 +4358,12 @@ namespace UrbanDictionary.Xamarin.Droid
 			
 			// aapt resource value: 0x7f07006f
 			public const int search_src_text = 2131165295;
+			
+			// aapt resource value: 0x7f0700a1
+			public const int search_view = 2131165345;
+			
+			// aapt resource value: 0x7f0700a0
+			public const int search_view_toolbar = 2131165344;
 			
 			// aapt resource value: 0x7f070073
 			public const int search_voice_btn = 2131165299;
@@ -4479,8 +4485,8 @@ namespace UrbanDictionary.Xamarin.Droid
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700a1
-			public const int visible = 2131165345;
+			// aapt resource value: 0x7f0700a3
+			public const int visible = 2131165347;
 			
 			// aapt resource value: 0x7f070029
 			public const int withText = 2131165225;

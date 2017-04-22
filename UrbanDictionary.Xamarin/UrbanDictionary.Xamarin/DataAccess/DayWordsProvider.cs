@@ -11,11 +11,11 @@ using UrbanDictionary.Xamarin.Models;
 
 namespace UrbanDictionary.Xamarin.DataAccess
 {
-   
+
     public class DayWordsProvider : BaseApiProvider, IDayWordsProvider
     {
         private readonly DayWordsParser _dayWordsParser;
-        public DayWordsProvider(HttpClient httpClient) 
+        public DayWordsProvider(HttpClient httpClient)
             : base(httpClient)
         {
             _dayWordsParser = new DayWordsParser();
@@ -40,6 +40,13 @@ namespace UrbanDictionary.Xamarin.DataAccess
             var request = new HttpRequestMessage();
             request.RequestUri = new Uri(character.LinkAddress);
             return SendAsync(request, new BrowseParser());
+        }
+
+        public Task<List<string>> LoadAutoCompleteAsync(string query)
+        {
+            var request = new HttpRequestMessage();
+            request.RequestUri = new Uri("http://api.urbandictionary.com/v0/autocomplete?term=" + query);
+            return SendAsync(request, new JsonParser<List<string>>());
         }
     }
 }

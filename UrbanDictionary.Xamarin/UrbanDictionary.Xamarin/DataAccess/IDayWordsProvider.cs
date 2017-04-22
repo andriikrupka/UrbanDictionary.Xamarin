@@ -10,5 +10,6 @@ namespace UrbanDictionary.Xamarin.DataAccess
         Task<List<WordOfDay>> LoadPageWordsOfDayAsync(int pageNumber = 0);
         Task<DefinitionsData> LoadDefinitionAsync(string relativePath, int pageNumber = 0);
         Task<List<BrowseWord>> LoadFromCharacterAsync(UrbanSymbol character);
+        Task<List<string>> LoadAutoCompleteAsync(string query);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.IoC;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using UrbanDictionary.Xamarin.Services;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
+    [ImplementPropertyChanged]
     public class BaseViewModel : MvxViewModel
     {
         [MvxInject]
@@ -19,8 +21,10 @@ namespace UrbanDictionary.Xamarin.ViewModels
 
         public BaseViewModel()
         {
-            
+            NavigateToSearchCommand = new MvxCommand(() => ShowViewModel<SearchViewModel>());
         }
+
+        public MvxCommand NavigateToSearchCommand { get; }
 
         protected void ShowError()
         {

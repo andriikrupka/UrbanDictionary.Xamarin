@@ -8,7 +8,7 @@ using System;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class MainViewModel : BaseViewModel
     {
         public DayWordsViewModel DayWordsViewModel { get; }
         public WordsCollectionViewModel WordsCollectionViewModel { get; }

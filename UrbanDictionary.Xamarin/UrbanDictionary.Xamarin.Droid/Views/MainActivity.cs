@@ -8,18 +8,20 @@ using UrbanDictionary.Xamarin.ViewModels;
 using Android.Widget;
 using Android.Views;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
     [Activity(MainLauncher = true)]
     public class MainActivity : MvxTabsAppCompatActivity
     {
+
         public MainViewModel MainViewModel => (MainViewModel)ViewModel;
         public MainActivity()
              : base(Resource.Layout.Main, Resource.Id.actualtabcontent)
         {
-        
-            
+
+
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,6 +37,17 @@ namespace UrbanDictionary.Xamarin.Droid
         {
             MenuInflater.Inflate(Resource.Menu.search_menu, menu);
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.action_search)
+            {
+                MainViewModel.NavigateToSearchCommand.Execute(null);
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
 
         protected override void AddTabs(Bundle args)

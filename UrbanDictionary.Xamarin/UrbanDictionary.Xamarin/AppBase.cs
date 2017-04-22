@@ -23,7 +23,8 @@ namespace UrbanDictionary.Xamarin
             Mvx.LazyConstructAndRegisterSingleton<DayWordsViewModel, DayWordsViewModel>();
             Mvx.LazyConstructAndRegisterSingleton<WordsCollectionViewModel, WordsCollectionViewModel>();
             Mvx.LazyConstructAndRegisterSingleton<MainViewModel, MainViewModel>();
-            Mvx.LazyConstructAndRegisterSingleton<DefinitionViewModel, DefinitionViewModel>();
+            Mvx.RegisterType<DefinitionViewModel, DefinitionViewModel>();
+            Mvx.RegisterType<SearchViewModel, SearchViewModel>();
         }
     }
 }
