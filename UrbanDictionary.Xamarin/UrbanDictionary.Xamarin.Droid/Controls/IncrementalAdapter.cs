@@ -43,9 +43,8 @@ namespace UrbanDictionary.Xamarin.Droid.Controls
 
         public async Task LoadMoreItemsAsync()
         {
-            ICoreSupportIncrementalLoading source = ItemsSource as ICoreSupportIncrementalLoading;
 
-            if (source != null)
+            if (ItemsSource is ICoreSupportIncrementalLoading source && source.HasMoreItems)
             {
                 _lastCount = ItemCount;
                 await source.LoadMoreItemsAsync();

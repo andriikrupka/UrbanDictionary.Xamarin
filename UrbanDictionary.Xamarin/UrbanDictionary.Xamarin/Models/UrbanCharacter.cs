@@ -2,45 +2,15 @@
 
 namespace UrbanDictionary.Models
 {
-    public abstract class UrbanSymbol : BindableObject
+    public abstract class UrbanSymbol 
     {
-        private bool _isActive;
-
-        private string _text;
-
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                if (value != _text)
-                {
-                    _text = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        public bool IsNormal { get; set; }
+        public string Text { get; set; }
 
         public string LinkAddress
         {
             get
             {
                 return GetLinkAddress();
-            }
-        }
-
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set
-            {
-                if (value != _isActive)
-                {
-                    _isActive = value;
-                    RaisePropertyChanged();
-                }
             }
         }
 
@@ -51,16 +21,9 @@ namespace UrbanDictionary.Models
     {
         private string _linkAddress;
 
-        public UrbanCharacter(string text, bool isNormal)
+        public UrbanCharacter(string text)
         {
             Text = text;
-            IsNormal = isNormal;
-        }
-
-        public UrbanCharacter(string text, bool isNormal, string linkAddress)
-            : this(text, isNormal)
-        {
-            _linkAddress = linkAddress;
         }
 
         protected override string GetLinkAddress()
@@ -82,10 +45,9 @@ namespace UrbanDictionary.Models
 
     public class UrbanBrowseWord : UrbanSymbol
     {
-        public UrbanBrowseWord(string text, bool isNormal)
+        public UrbanBrowseWord(string text)
         {
             Text = text;
-            IsNormal = isNormal;
         }
 
         protected override string GetLinkAddress()

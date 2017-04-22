@@ -1,36 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-  <FrameLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right">
+            android:layout_gravity="center_vertical"
+            android:background="@color/accent_green">
 
-  <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MOST POPULAR WORDS IN " />
-      
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            local:MvxBind="Text CurrentCharacter.CharacterText" />
-    
-    </LinearLayout>
-    
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="MOST POPULAR WORDS IN " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                local:MvxBind="Text CurrentCharacter.Text" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +41,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
                 android:text="Popular" />
 
@@ -45,7 +49,6 @@
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="-12dp"
-                android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="-12dp"
                 android:background="@android:color/black" />
@@ -53,11 +56,23 @@
             <TextView
                 android:id="@+id/characterView"
                 android:layout_width="wrap_content"
+                android:textColor="#000"
                 android:layout_height="wrap_content"
-                local:MvxBind="Text CurrentCharacter.CharacterText" />
+                android:text="A"
+                android:padding="6dp"
+                local:MvxBind="Text CurrentCharacter.Text" />
 
         </LinearLayout>
     </FrameLayout>
 
-  
+
+    <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+      android:id="@+id/characters_recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource Words; ItemClick ViewDefinitionCommand"
+      local:MvxItemTemplate="@layout/urban_character_template">
+
+    </MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView>
+
 </LinearLayout>

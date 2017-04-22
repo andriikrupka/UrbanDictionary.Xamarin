@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace UrbanDictionary.Xamarin.DataAccess
 {
-
-
     public abstract class BaseApiProvider
     {
         private readonly HttpClient _httpClient;

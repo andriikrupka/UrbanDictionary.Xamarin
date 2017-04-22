@@ -8,7 +8,7 @@ using Android.Views;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using Android.Support.V7.Widget;
 using System.Threading.Tasks;
-using UrbanDictionary.Xamarin.Models.Browse;
+using UrbanDictionary.Models;
 
 namespace UrbanDictionary.Xamarin.Droid.Views
 {
@@ -22,12 +22,12 @@ namespace UrbanDictionary.Xamarin.Droid.Views
             return dialog;
         }
 
-        private TaskCompletionSource<CharacterItem> taskCompletionSource;
+        private TaskCompletionSource<UrbanSymbol> taskCompletionSource;
         private bool isClicked;
 
-        public Task<CharacterItem> ShowAsync(Android.Support.V4.App.FragmentManager manager, string tag)
+        public Task<UrbanSymbol> ShowAsync(Android.Support.V4.App.FragmentManager manager, string tag)
         {
-            taskCompletionSource = new TaskCompletionSource<CharacterItem>();
+            taskCompletionSource = new TaskCompletionSource<UrbanSymbol>();
             Show(manager, tag);
             return taskCompletionSource.Task;
         }
@@ -52,7 +52,7 @@ namespace UrbanDictionary.Xamarin.Droid.Views
             return rootView;
         }
 
-        private void Adapter_ItemClick(object sender, CharacterItem e)
+        private void Adapter_ItemClick(object sender, UrbanSymbol e)
         {
             isClicked = true;
 
@@ -73,40 +73,40 @@ namespace UrbanDictionary.Xamarin.Droid.Views
 
     public class CharactersAdapter : RecyclerView.Adapter
     {
-        public event EventHandler<CharacterItem> ItemClick;
-        private List<CharacterItem> items = new List<CharacterItem>()
+        public event EventHandler<UrbanSymbol> ItemClick;
+        private List<UrbanSymbol> items = new List<UrbanSymbol>()
                 {
-                    new CharacterItem("A"),
-                    new CharacterItem("B"),
-                    new CharacterItem("C"),
-                    new CharacterItem("D"),
-                    new CharacterItem("E"),
-                    new CharacterItem("F"),
-                    new CharacterItem("G"),
-                    new CharacterItem("H"),
-                    new CharacterItem("I"),
-                    new CharacterItem("J"),
-                    new CharacterItem("K"),
-                    new CharacterItem("L"),
-                    new CharacterItem("M"),
-                    new CharacterItem("N"),
-                    new CharacterItem("O"),
-                    new CharacterItem("P"),
-                    new CharacterItem("Q"),
-                    new CharacterItem("R"),
-                    new CharacterItem("S"),
-                    new CharacterItem("T"),
-                    new CharacterItem("U"),
-                    new CharacterItem("V"),
-                    new CharacterItem("W"),
-                    new CharacterItem("X"),
-                    new CharacterItem("Y"),
-                    new CharacterItem("Z"),
-                    new CharacterItem("#"),
-                    new CharacterItem("new"),
+                    new UrbanCharacter("A"),
+                    new UrbanCharacter("B"),
+                    new UrbanCharacter("C"),
+                    new UrbanCharacter("D"),
+                    new UrbanCharacter("E"),
+                    new UrbanCharacter("F"),
+                    new UrbanCharacter("G"),
+                    new UrbanCharacter("H"),
+                    new UrbanCharacter("I"),
+                    new UrbanCharacter("J"),
+                    new UrbanCharacter("K"),
+                    new UrbanCharacter("L"),
+                    new UrbanCharacter("M"),
+                    new UrbanCharacter("N"),
+                    new UrbanCharacter("O"),
+                    new UrbanCharacter("P"),
+                    new UrbanCharacter("Q"),
+                    new UrbanCharacter("R"),
+                    new UrbanCharacter("S"),
+                    new UrbanCharacter("T"),
+                    new UrbanCharacter("U"),
+                    new UrbanCharacter("V"),
+                    new UrbanCharacter("W"),
+                    new UrbanCharacter("X"),
+                    new UrbanCharacter("Y"),
+                    new UrbanCharacter("Z"),
+                    //new UrbanCharacter("#"),
+                    //new UrbanCharacter("new"),
                 };
 
-        public List<CharacterItem> Items
+        public List<UrbanSymbol> Items
         {
             get
             {
@@ -119,7 +119,7 @@ namespace UrbanDictionary.Xamarin.Droid.Views
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var viewHolder = holder as CharacterViewHolder;
-            viewHolder.TextButton.Text = items[position].CharacterText;
+            viewHolder.TextButton.Text = items[position].Text;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

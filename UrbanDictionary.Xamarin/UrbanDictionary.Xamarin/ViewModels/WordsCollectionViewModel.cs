@@ -4,20 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UrbanDictionary.Xamarin.Models.Browse;
+using UrbanDictionary.Models;
+using UrbanDictionary.Xamarin.DataAccess;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
     [PropertyChanged.ImplementPropertyChanged]
     public class WordsCollectionViewModel : MvxViewModel
     {
-        public WordsCollectionViewModel()
+        private IDayWordsProvider dayWordsProvider;
+
+        public WordsCollectionViewModel(IDayWordsProvider dayWordsProvider)
         {
-            CurrentCharacter = new CharacterItem("A");
+            this.dayWordsProvider = dayWordsProvider;
+            CurrentCharacter = new UrbanCharacter("A");
+            ViewDefinitionCommand = new MvxCommand<BrowseWord>(ViewDefinitionExecute);
         }
 
-        public string CustomButtonText => "from VM";
+        private void ViewDefinitionExecute(BrowseWord word)
+        {
+            var bundle = new MvxBundle();
+            bundle.Data.Add(DefinitionViewModel.DefinitionWord, word.Word);
 
-        public CharacterItem CurrentCharacter { get; set; }
+            ShowViewModel<DefinitionViewModel>(bundle);
+        }
+
+        public MvxCommand<BrowseWord> ViewDefinitionCommand { get; }
+        public UrbanSymbol CurrentCharacter { get; set; }
+        public List<BrowseWord> Words { get; set; }
+        private async void OnCurrentCharacterChanged()
+        {
+            Words = await dayWordsProvider.LoadFromCharacterAsync(CurrentCharacter);
+        }
     }
 }

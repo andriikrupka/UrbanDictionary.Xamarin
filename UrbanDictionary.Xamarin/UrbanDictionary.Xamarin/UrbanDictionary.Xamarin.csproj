@@ -41,9 +41,12 @@
     <Compile Include="DataAccess\DayWordsProvider.cs" />
     <Compile Include="DataAccess\IDayWordsProvider.cs" />
     <Compile Include="DataAccess\IParserStrategy.cs" />
+    <Compile Include="DataAccess\Parsers\BrowseParser.cs" />
+    <Compile Include="DataAccess\Parsers\DayWordsBaseParser.cs" />
+    <Compile Include="DataAccess\Parsers\DayWordsParser.cs" />
+    <Compile Include="DataAccess\Parsers\DefinitionDayWordsParser.cs" />
     <Compile Include="Models\BrowseViewType.cs" />
     <Compile Include="Models\Browse\BrowseWord.cs" />
-    <Compile Include="Models\Browse\CharacterItem.cs" />
     <Compile Include="Models\Browse\WordsCategory.cs" />
     <Compile Include="Models\Browse\WordsCategoryResponse.cs" />
     <Compile Include="Models\Contributor.cs" />
@@ -51,6 +54,7 @@
     <Compile Include="Models\Core\BindableObject.cs" />
     <Compile Include="Models\Core\IPopupMessage.cs" />
     <Compile Include="Models\Core\IRootControl.cs" />
+    <Compile Include="Models\DefinitionsData.cs" />
     <Compile Include="Models\DoubleExtensions.cs" />
     <Compile Include="Models\SoundEffectElement\ISoundEfectElement.cs" />
     <Compile Include="Models\SoundEffectElement\SoundEfectResult.cs" />
@@ -66,6 +70,7 @@
     <Compile Include="Models\WordOfDayEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DayWordsViewModel.cs" />
+    <Compile Include="ViewModels\DefinitionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WordsCollectionViewModel.cs" />
   </ItemGroup>

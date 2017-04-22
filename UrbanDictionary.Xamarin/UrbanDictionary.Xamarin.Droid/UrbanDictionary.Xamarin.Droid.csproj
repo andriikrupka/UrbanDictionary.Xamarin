@@ -178,6 +178,7 @@
     <Compile Include="MvxTabsAppCompatActivity.cs" />
     <Compile Include="Views\BrowseCharacterDialog.cs" />
     <Compile Include="Views\CharacterViewHolder.cs" />
+    <Compile Include="Views\DefinitionViewActivity.cs" />
     <Compile Include="Views\SearchActivity.cs" />
     <Compile Include="Views\DayWordFragment.cs" />
     <Compile Include="Views\MainActivity.cs" />
@@ -206,6 +207,12 @@
     </AndroidResource>
     <AndroidResource Include="Resources\menu\search_menu" />
     <AndroidResource Include="Resources\layout\search_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\urban_character_template.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DefinitionViewActivity.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -260,6 +267,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_back_white.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_back_white.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_back_white.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_back_white.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_back_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

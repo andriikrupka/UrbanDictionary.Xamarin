@@ -10,30 +10,31 @@ using UrbanDictionary.Xamarin.DataAccess;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
-    public class DayWordsViewModel : MvxViewModel
+    public class DefinitionViewModel : MvxViewModel
     {
-        private readonly IDayWordsProvider _dayWordsProvider;
-        private int pageNumber = 0;
+        public const string DefinitionWord = "DefinitionWord";
+        private IDayWordsProvider _dayWordsProvider;
+        private int pageNumber = 1;
 
-        public MvxCommand RefreshCommand { get; private set; }
-
-        public DayWordsViewModel(IDayWordsProvider dayWordsProvider)
+        public DefinitionViewModel(IDayWordsProvider dayWordsProvider)
         {
             _dayWordsProvider = dayWordsProvider;
-            Data = new IncrementalCollection<WordOfDay>(LoadMoreItems);
-
             RefreshCommand = new MvxCommand(RefreshExecute);
         }
+
+        public MvxCommand RefreshCommand { get; }
 
         private async void RefreshExecute()
         {
             try
             {
                 IsRefreshing = true;
-                var data = await _dayWordsProvider.LoadPageWordsOfDayAsync(0);
+                await Task.Delay(2500);
+                var data = await _dayWordsProvider.LoadDefinitionAsync(Definition, 1);
                 Data.Clear();
+                Data.HasMoreItems = true;
                 Data.AddRange(data);
-                pageNumber = 0;
+                pageNumber = 1;
             }
             catch (Exception ex)
             {
@@ -50,11 +51,21 @@ namespace UrbanDictionary.Xamarin.ViewModels
 
         private async Task<IList<WordOfDay>> LoadMoreItems()
         {
-            var data = await _dayWordsProvider.LoadPageWordsOfDayAsync(pageNumber++);
+            var data = await _dayWordsProvider.LoadDefinitionAsync(Definition, pageNumber++);
+            Data.HasMoreItems = data.HasMoreItems;
             return data;
         }
 
         public IncrementalCollection<WordOfDay> Data { get; private set; }
         public bool IsRefreshing { get; private set; }
+        public string Definition { get; private set; }
+
+        protected override void InitFromBundle(IMvxBundle parameters)
+        {
+            base.InitFromBundle(parameters);
+
+            Definition = parameters.Data[DefinitionWord];
+            Data = new IncrementalCollection<WordOfDay>(LoadMoreItems);
+        }
     }
 }
