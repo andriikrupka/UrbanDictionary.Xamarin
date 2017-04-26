@@ -3,7 +3,16 @@
   <style name="AppTheme" parent="Theme.AppCompat.Light">
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
+    <item name="colorPrimaryDark">@color/accent_light_blue</item>
   </style>
 
+
+  <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+    <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+  </style>
+
+  <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+    <item name="textAllCaps">false</item>
+  </style>
 
 </resources>

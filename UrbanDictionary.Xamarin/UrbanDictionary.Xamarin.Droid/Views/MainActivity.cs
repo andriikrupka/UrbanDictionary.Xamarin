@@ -1,36 +1,61 @@
 ﻿using Android.App;
 using Android.OS;
-using MvvmCross.Droid.Views;
-using MvvmCross.Droid.Support.V4;
-using System;
 using UrbanDictionary.Xamarin.Droid.Views;
 using UrbanDictionary.Xamarin.ViewModels;
-using Android.Widget;
 using Android.Views;
-using Android.Support.V7.App;
-using Android.Support.V7.Widget;
+using System.Collections.Generic;
+using System.Linq;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
     [Activity(MainLauncher = true)]
-    public class MainActivity : MvxTabsAppCompatActivity
+    public class MainActivity : MvxAppCompatActivity<MainViewModel>
     {
+        private TabLayout tabLayout;
+        private ViewPager viewPager;
 
-        public MainViewModel MainViewModel => (MainViewModel)ViewModel;
         public MainActivity()
-             : base(Resource.Layout.Main, Resource.Id.actualtabcontent)
         {
-
 
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolBar);
+            SetContentView(Resource.Layout.Main);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.SetHomeButtonEnabled(true);
+            viewPager = FindViewById<ViewPager>(Resource.Id.view_pager);
+            tabLayout = FindViewById<TabLayout>(Resource.Id.tab_layout);
+            SetupViewPager(viewPager);
+        }
+
+        private void SetupViewPager(ViewPager viewPager)
+        {
+            var list = new List<ViewPagerAdapter.FragmentInfo>
+            {
+                new ViewPagerAdapter.FragmentInfo
+                {
+                    IconDrawable = Resource.Drawable.day_word_icon,
+                    FragmentType = typeof(DayWordFragment),
+                    ViewModel = ViewModel.DayWordsViewModel
+                },
+
+                new ViewPagerAdapter.FragmentInfo
+                {
+                    IconDrawable = Resource.Drawable.browse_icon,
+                    FragmentType = typeof(WordsCollectionFragment),
+                    ViewModel = ViewModel.WordsCollectionViewModel
+                }
+            };
+
+            var viewPagerAdapter = new ViewPagerAdapter(this, SupportFragmentManager, list, tabLayout);
+            viewPager.Adapter = viewPagerAdapter;
+            tabLayout.SetupWithViewPager(viewPager);
+            viewPagerAdapter.SetupIcons();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -43,17 +68,11 @@ namespace UrbanDictionary.Xamarin.Droid
         {
             if (item.ItemId == Resource.Id.action_search)
             {
-                MainViewModel.NavigateToSearchCommand.Execute(null);
+                ViewModel.NavigateToSearchCommand.Execute(null);
                 return true;
             }
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        protected override void AddTabs(Bundle args)
-        {
-            AddTab<DayWordFragment>("One", "One", args, MainViewModel.DayWordsViewModel);
-            AddTab<WordsCollectionFragment>("Two", "Two", args, MainViewModel.WordsCollectionViewModel);
         }
     }
 }

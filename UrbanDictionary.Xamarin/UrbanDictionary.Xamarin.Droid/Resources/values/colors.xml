@@ -2,4 +2,6 @@
 <resources>
   <color name="background">#FFF</color>
   <color name="accent_green">#DBF83C</color>
+  <color name="accent_blue">#2B67FF</color>
+  <color name="accent_light_blue">#2b79ff</color>
 </resources>

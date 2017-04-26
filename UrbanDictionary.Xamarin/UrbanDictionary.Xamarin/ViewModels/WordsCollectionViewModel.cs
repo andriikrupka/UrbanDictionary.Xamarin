@@ -14,18 +14,41 @@ namespace UrbanDictionary.Xamarin.ViewModels
     {
         private IDayWordsProvider dayWordsProvider;
 
+        public bool IsRefreshing { get; set; }
+        public MvxCommand RefreshCommand { get; set; }
+
         public WordsCollectionViewModel(IDayWordsProvider dayWordsProvider)
         {
             this.dayWordsProvider = dayWordsProvider;
+            RefreshCommand = new MvxCommand(RefreshExecute);
             CurrentCharacter = new UrbanCharacter("A");
             ViewDefinitionCommand = new MvxCommand<BrowseWord>(ViewDefinitionExecute);
+        }
+
+        private async void RefreshExecute()
+        {
+            if (IsRefreshing)
+                return;
+
+            IsRefreshing = true;
+            try
+            {
+                Words = await dayWordsProvider.LoadFromCharacterAsync(CurrentCharacter);
+            }
+            catch (Exception ex)
+            {
+                ShowError();
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
 
         private void ViewDefinitionExecute(BrowseWord word)
         {
             var bundle = new MvxBundle();
             bundle.Data.Add(DefinitionViewModel.DefinitionWord, word.Word);
-
             ShowViewModel<DefinitionViewModel>(bundle);
         }
 
@@ -36,11 +59,16 @@ namespace UrbanDictionary.Xamarin.ViewModels
         {
             try
             {
+            IsRefreshing = true;
                 Words = await dayWordsProvider.LoadFromCharacterAsync(CurrentCharacter);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ShowError();
+            }
+            finally
+            {
+                IsRefreshing = false;
             }
         }
     }

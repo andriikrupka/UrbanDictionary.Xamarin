@@ -10,7 +10,7 @@
         android:id="@+id/definition_view_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@color/accent_blue"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         local:MvxBind="Title Definition">
 

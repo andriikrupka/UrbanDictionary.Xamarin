@@ -55,6 +55,7 @@ namespace UrbanDictionary.Xamarin.ViewModels
             IList<WordOfDay> data = null;
             try
             {
+                IsRefreshing = true;
                 data = await _dayWordsProvider.LoadPageWordsOfDayAsync(pageNumber++);
 
             }
@@ -64,6 +65,7 @@ namespace UrbanDictionary.Xamarin.ViewModels
             }
             finally
             {
+                IsRefreshing = false;
                 if (data == null)
                 {
                     data = new List<WordOfDay>();
