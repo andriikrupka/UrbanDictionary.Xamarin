@@ -1,4 +1,5 @@
-﻿using UrbanDictionary.Models.Core;
+﻿using System.Collections.Generic;
+using UrbanDictionary.Models.Core;
 
 namespace UrbanDictionary.Models
 {
@@ -10,7 +11,7 @@ namespace UrbanDictionary.Models
         public int Id { get; set; }
         public string DayString { get; set; }
         public string Word { get; set; }
-        public string SoundUrls { get; set; }
+        public List<string> SoundUrls { get; set; }
         public string Meaning { get; set; }
         public string Example { get; set; }
 
@@ -41,18 +42,5 @@ namespace UrbanDictionary.Models
         }
 
         public Contributor Contributor { get; set; }
-
-        public bool IsPlaying
-        {
-            get { return _isPlaying; }
-            set
-            {
-                if (value != _isPlaying)
-                {
-                    _isPlaying = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
     }
 }

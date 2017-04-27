@@ -22,9 +22,14 @@ namespace UrbanDictionary.Xamarin.ViewModels
             ViewDefinitionCommand = new MvxCommand<string>(ViewDefinitionExecute);
         }
 
-        private void PlayExecute()
+        private async void PlayExecute()
         {
-            _soundService.PlaySound(WordOfDay.SoundUrls);
+            if (IsPlaying)
+                return;
+
+            IsPlaying = true;
+            var result = await _soundService.PlaySoundAsync(WordOfDay.SoundUrls.FirstOrDefault());
+            IsPlaying = false;
         }
 
         public MvxCommand PlaySoundCommand { get; }
@@ -41,5 +46,6 @@ namespace UrbanDictionary.Xamarin.ViewModels
 
         public MvxCommand<string> ViewDefinitionCommand { get; }
         public WordOfDay WordOfDay { get; }
+        public bool IsPlaying { get; private set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,18 @@ namespace UrbanDictionary.Xamarin.DataAccess.Parsers
                 var soundElement = htmlNode.Descendants("a").FirstOrDefault(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "play-sound");
                 if (soundElement != null && soundElement.Attributes.Contains("data-urls"))
                 {
-                    wordOfDay.SoundUrls = soundElement.Attributes["data-urls"].Value;
+                    try
+                    {
+                        wordOfDay.SoundUrls = JsonConvert.DeserializeObject<List<string>>(soundElement.Attributes["data-urls"].Value) ?? new List<string>();
+                    }
+                    catch (Exception)
+                    {
+                        wordOfDay.SoundUrls = new List<string>();
+                    }
+                }
+                else
+                {
+                    wordOfDay.SoundUrls = new List<string>();
                 }
 
                 var meaningElement = htmlNode.Descendants("div").FirstOrDefault(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "meaning");
