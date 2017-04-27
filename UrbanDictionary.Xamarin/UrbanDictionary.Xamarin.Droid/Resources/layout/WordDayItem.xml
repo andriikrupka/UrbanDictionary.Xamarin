@@ -13,14 +13,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        local:MvxBind="Text DayString"
+        local:MvxBind="Text WordOfDay.DayString"
         android:background="@color/accent_green"
         android:textColor="#000" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Word"
+        local:MvxBind="Text WordOfDay.Word; Click PlaySoundCommand"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="#000" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:textColor="#757575"
-        local:MvxBind="Html Meaning" />
+        local:MvxBind="Html WordOfDay.Meaning; LinkClickCommand ViewDefinitionCommand" />
 
   <UrbanDictionary.Xamarin.Droid.HtmlTextBlock
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:textStyle="italic"
         android:layout_marginTop="6dp"
         android:textColor="#757575"
-        local:MvxBind="Html Example" />
+        local:MvxBind="Html WordOfDay.Example; LinkClickCommand ViewDefinitionCommand" />
 
   <LinearLayout
         android:layout_width="wrap_content"
@@ -47,13 +47,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            local:MvxBind="Text Contributor.By"
+            local:MvxBind="Text WordOfDay.Contributor.By"
             android:textColor="#000"
             android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            local:MvxBind="Text Contributor.Author"
+            local:MvxBind="Text WordOfDay.Contributor.Author"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
             android:textColor="#2B67FF"
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            local:MvxBind="Text Contributor.Data"
+            local:MvxBind="Text WordOfDay.Contributor.Data"
             android:textColor="#000"
             android:textStyle="bold" />
     </LinearLayout>

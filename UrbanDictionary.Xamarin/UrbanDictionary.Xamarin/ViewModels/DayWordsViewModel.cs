@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UrbanDictionary.Models;
 using UrbanDictionary.Xamarin.Core.Collections;
 using UrbanDictionary.Xamarin.DataAccess;
+using UrbanDictionary.Xamarin.Services;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
@@ -15,18 +16,18 @@ namespace UrbanDictionary.Xamarin.ViewModels
         private readonly IDayWordsProvider _dayWordsProvider;
         private int pageNumber = 0;
         private IDialogService _dialogService;
+        private readonly ISoundService _soundService;
 
-
-        public DayWordsViewModel(IDayWordsProvider dayWordsProvider, IDialogService dialogService)
+        public DayWordsViewModel(IDayWordsProvider dayWordsProvider, IDialogService dialogService, ISoundService soundService)
         {
             _dayWordsProvider = dayWordsProvider;
             _dialogService = dialogService;
-            Data = new IncrementalCollection<WordOfDay>(LoadMoreItems);
-
+            _soundService = soundService;
+            Data = new IncrementalCollection<WordViewModel>(LoadMoreItems);
             RefreshCommand = new MvxCommand(RefreshExecute);
         }
 
-        public IncrementalCollection<WordOfDay> Data { get; private set; }
+        public IncrementalCollection<WordViewModel> Data { get; private set; }
         public bool IsRefreshing { get; private set; }
         public MvxCommand RefreshCommand { get; private set; }
 
@@ -36,8 +37,9 @@ namespace UrbanDictionary.Xamarin.ViewModels
             {
                 IsRefreshing = true;
                 var data = await _dayWordsProvider.LoadPageWordsOfDayAsync(0);
+                
                 Data.Clear();
-                Data.AddRange(data);
+                Data.AddRange(data.Select(x=> new WordViewModel(x, _soundService)));
                 pageNumber = 0;
             }
             catch (Exception)
@@ -50,7 +52,7 @@ namespace UrbanDictionary.Xamarin.ViewModels
             }
         }
 
-        private async Task<IList<WordOfDay>> LoadMoreItems()
+        private async Task<IList<WordViewModel>> LoadMoreItems()
         {
             IList<WordOfDay> data = null;
             try
@@ -72,7 +74,7 @@ namespace UrbanDictionary.Xamarin.ViewModels
                 }
             }
 
-            return data;
+            return data.Select(x=> new WordViewModel(x, _soundService)).ToList();
         }
     }
 }

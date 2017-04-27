@@ -5,29 +5,33 @@ using Android.Runtime;
 using Android.Widget;
 using Android.Text;
 using Android.Util;
+using UrbanDictionary.Xamarin.Droid.Controls;
+using System.Windows.Input;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
     public class HtmlTextBlock : TextView
     {
         private string html;
-
-
-        public HtmlTextBlock(Context context)
-            : base(context)
-        { }
+        private readonly ExtendedLinkMovementMethod extendedLinkMovementMethod;
 
         public HtmlTextBlock(Context context, IAttributeSet attrs)
             : base(context, attrs)
-        { }
+        {
+            extendedLinkMovementMethod = new ExtendedLinkMovementMethod(new string[] { "define" });
+            extendedLinkMovementMethod.LinkClicked += OnLinkClicked;
+            MovementMethod = extendedLinkMovementMethod;
+        }
 
-        public HtmlTextBlock(Context context, IAttributeSet attrs, int defStyleAttr)
-            : base(context, attrs, defStyleAttr)
-        { }
+        public ICommand LinkClickCommand { get; set; }
 
-        public HtmlTextBlock(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes)
-            : base(context, attrs, defStyleAttr, defStyleRes)
-        { }
+        private void OnLinkClicked(object sender, string e)
+        {
+            if (LinkClickCommand?.CanExecute(e) ?? false)
+            {
+                LinkClickCommand?.Execute(e);
+            }
+        }
 
         protected HtmlTextBlock(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
