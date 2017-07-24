@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace UrbanDictionary.Xamarin.DataAccess
 {
-
-
     public abstract class BaseApiProvider
     {
         private readonly HttpClient _httpClient;
@@ -21,9 +19,9 @@ namespace UrbanDictionary.Xamarin.DataAccess
 
         protected async Task<T> SendAsync<T>(HttpRequestMessage request, IParserStrategy<T> parser)
         {
-            using (var httpResponseMessage = await _httpClient.SendAsync(request))
+            using (var httpResponseMessage = await _httpClient.SendAsync(request).ConfigureAwait(false))
             {
-                var data = await httpResponseMessage.Content.ReadAsStringAsync();
+                var data = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return parser.Parse(data);
             }
         }  

@@ -1,31 +1,31 @@
+﻿using System.Collections;
+using System.Threading.Tasks;
 using Android.Content;
 using Android.Views;
 using MvvmCross.Binding.Droid.Views;
-using System.Collections;
 using UrbanDictionary.Xamarin.Core.Collections;
-using System.Threading.Tasks;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 
-namespace UrbanDictionary.Xamarin.Droid
+namespace UrbanDictionary.Xamarin.Droid.Controls
 {
-    public class MvxIncrementalAdapter : MvxAdapter
+    public class IncrementalAdapter : MvxRecyclerAdapter
     {
         private int _lastCount;
         private int _maxPositionReached;
 
-        public MvxIncrementalAdapter(Context context)
-            : base(context)
+        public IncrementalAdapter()
         {
         }
 
-        public override View GetView(int position, View convertView, ViewGroup parent)
+        public override object GetItem(int position)
         {
             if ((position >= _maxPositionReached) && (position >= _lastCount))
             {
                 _maxPositionReached = position;
-                LoadMoreItemsAsync();
+                LoadMoreItems();
             }
 
-            return base.GetView(position, convertView, parent);
+            return base.GetItem(position);
         }
 
         protected override void SetItemsSource(IEnumerable value)
@@ -33,16 +33,20 @@ namespace UrbanDictionary.Xamarin.Droid
             base.SetItemsSource(value);
             _lastCount = 0;
             _maxPositionReached = 0;
+            LoadMoreItems();
+        }
+
+        private void LoadMoreItems()
+        {
             LoadMoreItemsAsync();
         }
 
         public async Task LoadMoreItemsAsync()
         {
-            ICoreSupportIncrementalLoading source = ItemsSource as ICoreSupportIncrementalLoading;
 
-            if (source != null)
+            if (ItemsSource is ICoreSupportIncrementalLoading source && source.HasMoreItems)
             {
-                _lastCount = Count;
+                _lastCount = ItemCount;
                 await source.LoadMoreItemsAsync();
             }
         }

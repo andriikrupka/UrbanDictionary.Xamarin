@@ -11,6 +11,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +41,12 @@
     <Compile Include="DataAccess\DayWordsProvider.cs" />
     <Compile Include="DataAccess\IDayWordsProvider.cs" />
     <Compile Include="DataAccess\IParserStrategy.cs" />
+    <Compile Include="DataAccess\Parsers\BrowseParser.cs" />
+    <Compile Include="DataAccess\Parsers\DayWordsBaseParser.cs" />
+    <Compile Include="DataAccess\Parsers\DayWordsParser.cs" />
+    <Compile Include="DataAccess\Parsers\DefinitionDayWordsParser.cs" />
+    <Compile Include="DataAccess\Parsers\JsonParser.cs" />
+    <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Models\BrowseViewType.cs" />
     <Compile Include="Models\Browse\BrowseWord.cs" />
     <Compile Include="Models\Browse\WordsCategory.cs" />
@@ -48,6 +56,7 @@
     <Compile Include="Models\Core\BindableObject.cs" />
     <Compile Include="Models\Core\IPopupMessage.cs" />
     <Compile Include="Models\Core\IRootControl.cs" />
+    <Compile Include="Models\DefinitionsData.cs" />
     <Compile Include="Models\DoubleExtensions.cs" />
     <Compile Include="Models\SoundEffectElement\ISoundEfectElement.cs" />
     <Compile Include="Models\SoundEffectElement\SoundEfectResult.cs" />
@@ -62,7 +71,15 @@
     <Compile Include="Models\WordOfDay.cs" />
     <Compile Include="Models\WordOfDayEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\INetworkService.cs" />
+    <Compile Include="Services\ISoundService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\DayWordsViewModel.cs" />
+    <Compile Include="ViewModels\DefinitionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\WordsCollectionViewModel.cs" />
+    <Compile Include="ViewModels\WordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack-PCL, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,10 +102,28 @@
       <HintPath>..\..\packages\MvvmCross.Platform.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=1.53.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PropertyChanged.Fody.1.53.0\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\speaking.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+  </Target>
 </Project>

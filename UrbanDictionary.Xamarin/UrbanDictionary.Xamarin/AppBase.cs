@@ -20,7 +20,11 @@ namespace UrbanDictionary.Xamarin
             base.Initialize();
 
             Mvx.LazyConstructAndRegisterSingleton<IDayWordsProvider>(()=> new DayWordsProvider(httpClient));
+            Mvx.LazyConstructAndRegisterSingleton<DayWordsViewModel, DayWordsViewModel>();
+            Mvx.LazyConstructAndRegisterSingleton<WordsCollectionViewModel, WordsCollectionViewModel>();
             Mvx.LazyConstructAndRegisterSingleton<MainViewModel, MainViewModel>();
+            Mvx.RegisterType<DefinitionViewModel, DefinitionViewModel>();
+            Mvx.RegisterType<SearchViewModel, SearchViewModel>();
         }
     }
 }

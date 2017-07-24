@@ -5,5 +5,6 @@ namespace UrbanDictionary.Xamarin.Core.Collections
     public interface ICoreSupportIncrementalLoading
     {
         Task LoadMoreItemsAsync();
+        bool HasMoreItems { get; }
     }
 }

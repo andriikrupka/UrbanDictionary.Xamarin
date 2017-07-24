@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="12dp">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@color/accent_green"
+      android:textColor="#000"
+      local:MvxBind="Text WordOfDay.DayString" />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:text="PPP Ppqquu"
+        android:textStyle="bold"
+        local:MvxBind="Text WordOfDay.Word" />
+
+    <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          local:MvxBind="Visibility EmptyToVisibilityConverter(WordOfDay.SoundUrls); Click PlaySoundCommand;" />
+
+  </LinearLayout>
+
+  <UrbanDictionary.Xamarin.Droid.HtmlTextBlock
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      android:textColor="#757575"
+      local:MvxBind="Html WordOfDay.Meaning; LinkClickCommand ViewDefinitionCommand" />
+
+  <UrbanDictionary.Xamarin.Droid.HtmlTextBlock
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      android:textColor="#757575"
+      android:textStyle="italic"
+      local:MvxBind="Html WordOfDay.Example; LinkClickCommand ViewDefinitionCommand" />
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textStyle="bold"
+        local:MvxBind="Text WordOfDay.Contributor.By" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:textColor="#2B67FF"
+        android:textStyle="bold"
+        local:MvxBind="Text WordOfDay.Contributor.Author" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textStyle="bold"
+        local:MvxBind="Text WordOfDay.Contributor.Data" />
+  </LinearLayout>
+</LinearLayout>

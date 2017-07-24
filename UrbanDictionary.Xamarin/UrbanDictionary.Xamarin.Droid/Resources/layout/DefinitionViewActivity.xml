@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res/UrbanDictionary.Xamarin.Droid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/definition_view_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/accent_blue"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:MvxBind="Title Definition">
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout
+        android:id="@+id/wordsListViewRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        local:MvxBind="Refreshing IsRefreshing; RefreshCommand RefreshCommand">
+
+        <UrbanDictionary.Xamarin.Droid.MvxIncrementalListView
+            android:id="@+id/definition_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            local:MvxBind="ItemsSource Data"
+            local:MvxItemTemplate="@layout/worddayitem" />
+
+    </MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout>
+
+</LinearLayout>

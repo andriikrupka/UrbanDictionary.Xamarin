@@ -1,6 +1,12 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Converters;
+using MvvmCross.Platform.IoC;
+using UrbanDictionary.Xamarin.Droid.Converters;
+using UrbanDictionary.Xamarin.Droid.Services;
+using UrbanDictionary.Xamarin.Services;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
@@ -12,7 +18,24 @@ namespace UrbanDictionary.Xamarin.Droid
 
         protected override IMvxApplication CreateApp()
         {
-           return new AppBase();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, AndroidDialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<INetworkService, AndroidNetworkService>();
+            Mvx.LazyConstructAndRegisterSingleton<ISoundService, AndroidSoundService>();
+            return new AppBase();
+        }
+
+        protected override IMvxIocOptions CreateIocOptions()
+        {
+            return new MvxIocOptions()
+            {
+                PropertyInjectorOptions = MvxPropertyInjectorOptions.MvxInject
+            };
+        }
+
+        protected override void FillValueConverters(IMvxValueConverterRegistry registry)
+        {
+            base.FillValueConverters(registry);
+            registry.AddOrOverwrite("EmptyToVisibilityConverter", new EmptyToVisibilityConverter());
         }
     }
 }

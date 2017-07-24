@@ -2,10 +2,6 @@ using System;
 
 using Android.App;
 using Android.Runtime;
-using ModernHttpClient;
-using System.Net.Http;
-using UrbanDictionary.Xamarin.DataAccess;
-using MvvmCross.Core.ViewModels;
 
 namespace UrbanDictionary.Xamarin.Droid
 {
@@ -16,6 +12,7 @@ namespace UrbanDictionary.Xamarin.Droid
 
         public override void OnCreate()
         {
+            
             base.OnCreate();
         }
     }

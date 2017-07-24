@@ -19,6 +19,8 @@ namespace UrbanDictionary.Xamarin.Core.Collections
             _loadMoreFunc = loadMoreFunc;
         }
 
+        public bool HasMoreItems { get; set; } = true;
+
         public async Task LoadMoreItemsAsync()
         {
             var newItems = await _loadMoreFunc();
