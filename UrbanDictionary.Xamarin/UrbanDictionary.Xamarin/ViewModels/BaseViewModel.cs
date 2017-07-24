@@ -1,16 +1,11 @@
 ﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.IoC;
 using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UrbanDictionary.Xamarin.Services;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
-    [ImplementPropertyChanged]
+    [AddINotifyPropertyChangedInterfaceAttribute]
     public class BaseViewModel : MvxViewModel
     {
         [MvxInject]

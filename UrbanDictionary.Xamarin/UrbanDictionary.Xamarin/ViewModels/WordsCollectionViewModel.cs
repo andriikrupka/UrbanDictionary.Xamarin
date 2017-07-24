@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Core.ViewModels;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using UrbanDictionary.Xamarin.DataAccess;
 
 namespace UrbanDictionary.Xamarin.ViewModels
 {
-    [PropertyChanged.ImplementPropertyChanged]
+    [AddINotifyPropertyChangedInterfaceAttribute]
     public class WordsCollectionViewModel : BaseViewModel
     {
         private IDayWordsProvider dayWordsProvider;
